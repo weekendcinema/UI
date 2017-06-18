@@ -1,0 +1,150 @@
+<spinner show="!isLoading"></spinner>
+<div class="container" ng-if="!isLoading">
+	<div class="row">
+		<div class="col-md-2 col-xs-6">
+			<div class="card">
+				<img class="card-img-top img-240" src="{{cinema.general.posterUrl}}"
+					alt="Card image cap">
+				<div class="card-block">
+					<h4 class="card-title">{{cinema.name}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 col-xs-6">
+			<span class="badge  bg-color-mediumseagreen">Info</span>
+			<ul>
+				<li ng-if="cinema.lng">Language: {{cinema.lng}}</li>
+				<li ng-if="cinema.general.banner.name">Banner :
+					{{cinema.general.banner.name}}</li>
+				<li ng-if="cinema.general.genre.length">Genre : <and
+						list="cinema.general.genre"></and></li>
+				<li ng-if="cinema.general.type.length">Type : <and
+						list="cinema.general.type"></and></li>
+				<li ng-if="cinema.general.releaseDt">Release : January 1,2017</li>
+				<li ng-if="cinema.general.duration">Duration :
+					{{cinema.general.duration}}</li>
+				<li ng-if="cinema.general.certificate">Certificate :
+					{{cinema.general.certificate}}</li>
+				<li ng-if="cinema.general.budget">Budget :
+					{{cinema.general.budget}}</li>
+				<li ng-if="cinema.general.collection">Collection :
+					{{cinema.general.collection}}</li>
+				<li ng-if="cinema.general.result">Result :
+					{{cinema.general.result}}</li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<!-- <span class="badge  bg-color-mediumseagreen">About</span> -->
+			<p>
+				{{cinema.name}} is a {{cinema.general.year}} Indian Telugu-language
+				<and list="cinema.eng.genre"></and>
+				cinema directed by DIRECTOR and produced by AAA,BBBB under the
+				banner {{cinema.general.banner.name}}.
+			</p>
+
+		</div>
+		<div class="col-md-4">
+			<span class="badge  bg-color-tomato">Cast & Crew</span>
+			<owl-carousel class="owl-carousel carousel owl-theme"
+				data-options="{ items:5,nav:false,autoplayTimeout:2000,responsive:{}}">
+			<owl-carousel-item ng-repeat="cast in cinema.casting.cast">
+
+			<div class="card">
+				<a ui-sref="celebrity({celebrityName:cast.celebrityId})"
+					href="#/celebrity/{{cast.celebrityId}}"> <img
+					class="card-img-top img-60" src="{{cast.img}}" alt="Card image cap"></a>
+				<div class="card-block">
+					<h5 class="card-title">{{cast.name}}</h5>
+					<p class="card-text">
+						<small class="">{{cast.type}}</small>
+					</p>
+				</div>
+			</div>
+			</owl-carousel-item> </owl-carousel>
+			
+			<owl-carousel class="owl-carousel carousel owl-theme"
+				data-options="{ items:5,nav:false,autoplayTimeout:2000,responsive:{}}">
+			<owl-carousel-item ng-repeat="crew in cinema.casting.crew">
+			<div class="card">
+				<a ui-sref="celebrity({celebrityName:crew.celebrityId})"
+					href="#/celebrity/{{crew.celebrityId}}"> <img
+					class="card-img-top img-60" src="{{crew.img}}" alt="Card image cap">
+				</a>
+				<div class="card-block">
+					<h5 class="card-title">{{crew.name}}</h5>
+					<p class="card-text">
+						<small class="">{{crew.type}}</small>
+					</p>
+				</div>
+			</div>
+			</owl-carousel-item> </owl-carousel>
+		</div>
+	</div>
+</div>
+<div class="container" ng-if="cinema.songs.list.length>0">
+	<span class="badge bg-color-MUSIC">Songs</span>
+	<div class="row">
+		<div class="col-md-6">
+<!-- 			<owl-carousel class="owl-carousel carousel owl-theme"
+				data-options="{autoplay:false,nav:true,dots:false,video:true,responsive:{0:{items:1}}}">
+			<owl-carousel-item ng-repeat="song in cinema.songs.list">
+			<my-youtube class="youtube-320" code="song.youtubeUrl"></my-youtube>
+			</owl-carousel-item> </owl-carousel> -->
+			<my-youtube class="youtube-320" code="currentSong"></my-youtube>
+		</div>
+		<div class="col-md-6">
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						<th>Song</th>
+						<th>Lyrics</th>
+						<th>Singers</th>
+						<th>Music</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="song in cinema.songs.list">
+						<td>{{song.name}}</td>
+						<td><span ng-repeat="lyricist in song.lyricist">{{lyricist.name}}
+						</span></td>
+						<td>
+						   <span ng-repeat="singer in song.singers">{{singer.name}},</span>
+						</td>
+						<td>{{song.musicDirector.name}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<div class="container" ng-if="cinema.videos">
+	<span class="badge bg-color-TEASER">Trailers/Videos</span>
+	<div class="row">
+		<owl-carousel class="owl-carousel carousel owl-theme"
+			data-options="{autoplay:false,nav:true,dots:false,video:true,responsive:{
+            0:{
+                items:1
+            },
+            500:{
+            items:2
+            }
+        }}">
+		<owl-carousel-item ng-repeat="video in cinema.videos">
+		<my-youtube class="youtube-320" code="video.url"></my-youtube> </owl-carousel-item> </owl-carousel>
+	</div>
+</div>
+
+<div class="container" ng-if="cinema.images.length">
+	<span class="badge bg-color-tomato">Images</span>
+	<owl-carousel class="owl-carousel carousel owl-theme"
+		data-options="{nav:false,dots:true}"> <owl-carousel-item
+		ng-repeat="img in cinema.general.photos">
+	<div class="card">
+		<img class="card-img-top img-responsive" src="{{img}}"
+			alt="Card image cap">
+	</div>
+	</owl-carousel-item> </owl-carousel>
+</div>
+

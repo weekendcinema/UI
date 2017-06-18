@@ -1,0 +1,28 @@
+<div class="menu" ng-controller="MenuCtrl">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span><span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><span style="color: #4caf50">Weekend</span>
+					Cinema</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+				<li aria-controls="navbar" data-toggle="collapse"><a
+                        href="/trending"><span ng-class="{ active: isActive('/trending')}">Trending</span></a></li>
+					<li aria-controls="navbar" data-toggle="collapse"><a
+						href="/calendar"><span ng-class="{ active: isActive('/')}">Calendar</span></a></li>
+					<li><a href="/cinemas"><span
+							ng-class="{ active: isActive('/cinemas')}">Cinemas</span></a></li>
+					<li><a href="/celebrities"><span
+							ng-class="{ active: isActive('/celebrities')}">Celebrities</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>

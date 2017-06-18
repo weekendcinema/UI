@@ -1,0 +1,64 @@
+<spinner show="!isLoading"></spinner>
+<div class="container" ng-if="!isLoading">
+	<div class="row">
+		<div class="col-md-3">
+			<span class="badge  bg-color-TEASER">Trending Videos</span>
+			<div class="" ng-repeat="post in videos">
+				<div class="media-body">
+					<h4 class="media-heading">
+						<a ui-sref="post({postName:post._id})" href="#/post/{{post._id}}">{{
+							post.msg.local.ttl}}</a>
+					</h4>
+				</div>
+			</div>
+			<small><a href="">more videos</a></small>
+		</div>
+		<div class="col-md-3">
+			<span class="badge  bg-color-NEWS">Trending News</span>
+			<div class="" ng-repeat="post in videos">
+				<div class="media-body">
+					<h4 class="media-heading">
+						<a ui-sref="post({postName:post._id})" href="#/post/{{post._id}}">{{
+							post.msg.local.ttl}}</a>
+					</h4>
+				</div>
+			</div>
+			<small><a href="">more news</a></small>
+		</div>
+		<div class="col-md-3">
+			<span class="badge  bg-color-MUSIC">Trending Audio</span>
+		</div>
+		<div class="col-md-3">
+			<span class="badge badge-NEXT_ANTY">Next Anty ?</span>
+			<div ng-repeat="cinema in upcomingCinemas">
+				<div class="media-body">
+					<h4 class="media-heading">
+						<a ui-sref="cinema({cinemaName:cinema.cinemaId})"
+							href="#/cinema/{{cinema.cinemaId}}">{{ cinema.name}}</a>
+					</h4>
+				</div>
+			</div>
+			<div class="media-body"></div>
+		</div>
+	</div>
+</div>
+<div class="container" ng-if="!isLoading">
+	<span class="badge  bg-color-INCINEMAS">Reviews</span>
+</div>
+<div class="container" ng-if="!isLoading">
+	<span class="badge  bg-color-darkorange">Coming Soon</span>
+	<owl-carousel class="owl-carousel carousel owl-theme card-group"
+		data-options="{ items:10}"> <owl-carousel-item
+		ng-repeat="cinema in upcomingCinemas">
+	<div class="card card-group">
+		<a ui-sref="cinema({cinemaName:cinema.cinemaId})"
+			href="#/cinema/{{cinema.cinemaId}}"> <img
+			class="card-img-top img-120" src="{{cinema.general.posterUrl}}"
+			alt="Card image cap">
+		</a>
+		<div class="card-block">
+			<h5 class="card-title">{{cinema.name}}</h5>
+		</div>
+	</div>
+	</owl-carousel-item> </owl-carousel>
+</div>

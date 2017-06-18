@@ -1,0 +1,39 @@
+<spinner show="!isLoading"></spinner>
+<div class="container" ng-if="!isLoading">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="card">
+				<image class=" img-responsive" ng-src="{{article.imglnk}}"
+					ng-show="article.type == 'NEWS'" />
+				<my-youtube class="youtube" code="article.media.video.youtube[0]"
+					ng-show="['TEASER','TRAILER'].indexOf(article.type)!=-1"></my-youtube>
+				<div class="card-block">
+					<h4 class="color-{{article.type}}">{{article.msg.local.ttl}} 
+					  <small class="text-muted">By Admin | Last updated 
+					      <time-diff date="article.lstMntDT"></time-diff>ago
+					  </small>
+
+					</h4>
+					<h4 class="">{{article.msg.local.text}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3" ng-show="posts" ng-controller="HomeCtrl">
+			<div class="card" ng-repeat="post in posts">
+				<a ui-sref="post({postName:post._id})" href="#/post/{{post._id}}">
+					<div class="media-left">
+						<img class="img-small img-circle"
+							src="https://i.ytimg.com/vi/{{post.media.video.youtube[0]}}/default.jpg"
+							alt="...">
+					</div>
+					<div class="media-body">
+						<h5 class="media-heading">{{post.msg.local.ttl}}</h5>
+						<small class="text-muted">Last updated <time-diff
+								date="post.lstMntDT"></time-diff> ago
+						</small>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
