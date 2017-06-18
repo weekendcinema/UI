@@ -96,6 +96,7 @@
 			<table class="table table-responsive">
 				<thead>
 					<tr>
+					    <th></th>
 						<th>Song</th>
 						<th>Lyrics</th>
 						<th>Singers</th>
@@ -104,6 +105,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="song in cinema.songs.list">
+					<td><a href="" ng-click="setCurrentSong(song.youtubeUrl)"><i class="fa fa-play-circle-o" aria-hidden="true"></i></a></td>
 						<td>{{song.name}}</td>
 						<td><span ng-repeat="lyricist in song.lyricist">{{lyricist.name}}
 						</span></td>
